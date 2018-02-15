@@ -1,0 +1,77 @@
+[
+    {
+        "id": 0,
+        "personal": {
+            "avatar": "http://www.artofhustle.com/wp-content/uploads/featured/default-avatar_150x150.jpg",
+            "name": "Pedro Perez",
+            "age": 35,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "country": {
+                "flag": "https://cdn.jsdelivr.net/emojione/assets/png/1f1ec-1f1e7.png?v=2.2.7",
+                "name": "España"
+            }
+        },
+        "skills": {
+            "languages": [ "Español", "Vasco", "Francés"],
+            "duties": [ "Lavar", "Planchar", "Cocinar", "Enfermería"]
+        },
+        "score": 3,
+        "price": {
+            "range": {
+                "from": 9,
+                "to": 12
+            },
+            "currency": "€"
+        }
+    },
+    {
+        "id": 1,
+        "personal": {
+            "avatar": "http://www.artofhustle.com/wp-content/uploads/featured/default-avatar_150x150.jpg",
+            "name": "Juan Herrera",
+            "age": 33,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "country": {
+                "flag": "https://cdn.jsdelivr.net/emojione/assets/png/1f1ec-1f1e7.png?v=2.2.7",
+                "name": "España"
+            }
+        },
+        "skills": {
+            "languages": [ "Español", "Inglés"],
+            "duties": [ "Lavar", "Enfermería"]
+        },
+        "score": 4,
+        "price": {
+            "range": {
+                "from": 10,
+                "to": 15
+            },
+            "currency": "€"
+        }
+    },
+    {
+        "id": 2,
+        "personal": {
+            "avatar": "http://www.artofhustle.com/wp-content/uploads/featured/default-avatar_150x150.jpg",
+            "name": "Laura Sanchez",
+            "age": 27,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "country": {
+                "flag": "https://cdn.jsdelivr.net/emojione/assets/png/1f1ec-1f1e7.png?v=2.2.7",
+                "name": "España"
+            }
+        },
+        "skills": {
+            "languages": [ "Español", "Gallego"],
+            "duties": [ "Lavar", "Cocinar"]
+        },
+        "score": 2,
+        "price": {
+            "range": {
+                "from": 8,
+                "to": 15
+            },
+            "currency": "€"
+        }
+    }
+]

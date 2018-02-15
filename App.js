@@ -16,25 +16,21 @@ import {
 } from 'react-native';
 
 import Header from './src/components/Commons/Header';
+import * as assistantApi from './src/api/assistant.api.js';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 const {height, width} = Dimensions.get('window');
 
-
-//<Header title="seniors" rightBtnLabel="Filter" rightBtnAction="b"/>
 
 type Props = {};
 export default class App extends Component<Props> {
   constructor(props){
     super(props)
     this.state = {
-      filterOpen: false
+      filterOpen: false,
+      error: false,
+      loading: false,
+      data: []
     }
 
     this.switchFilter = this.switchFilter.bind(this)
@@ -42,6 +38,16 @@ export default class App extends Component<Props> {
 
   switchFilter(){
     this.setState({filterOpen: !this.state.filterOpen})
+  }
+
+  componentDidMount(){
+    this.setState({loading: true})
+    assistantApi.fetchData({})
+      .then((response) => 
+        this.setState({data: response.data, loading: false, error: false})
+        )
+      .catch((err)=>
+        this.setState({data: [], loading: false, error: true}))
   }
 
   render() {
@@ -52,7 +58,25 @@ export default class App extends Component<Props> {
          <Header title="seniors" rightBtnLabel="Filter" rightBtnAction={()=> this.switchFilter()}/>
 
           <View style={styles.main}>
+            
             <Text style={{color: '#fff'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
+            
+            {this.state.loading && 
+              <Text style={{color: '#fff'}}>loading..</Text>
+            }
+            {this.state.error && 
+              <Text style={{color: '#fff'}}>error</Text>
+            }
+            {this.state.data.map(
+              (assistant) => 
+                <Text
+                  key={assistant.personal.name}
+                  style={{color: '#fff'}}>
+                  {assistant.personal.name}
+                </Text>
+              )
+            }
+            
           </View>
         </View>
       </SafeAreaView>
