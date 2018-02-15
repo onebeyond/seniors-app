@@ -59,7 +59,7 @@ export default class App extends Component<Props> {
 
           <View style={styles.main}>
             
-            <Text style={{color: '#fff'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
+            <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
             
             {this.state.loading && 
               <Text style={{color: '#fff'}}>loading..</Text>
@@ -69,14 +69,19 @@ export default class App extends Component<Props> {
             }
             {this.state.data.map(
               (assistant) => 
-                <Text
-                  key={assistant.personal.name}
-                  style={{color: '#fff'}}>
+              <View key={assistant.personal.id} style={styles.card}>
+                <Text style={{fontWeight: 'bold', fontSize: 20}}>
                   {assistant.personal.name}
                 </Text>
+                <Text>{assistant.price.range.from}-{assistant.price.range.to}{assistant.price.currency}/h</Text>
+                <Text style={{fontWeight: 'bold'}}>Duties</Text>
+                {assistant.skills.duties.map((duty) => <Text key={assistant.personal.id+duty+'duty'}>{duty}</Text>)}
+                <Text style={{fontWeight: 'bold'}}>languages</Text>
+                {assistant.skills.languages.map((lang) => <Text key={assistant.personal.id+lang+'lang'}>{lang}</Text>)}
+                </View>
               )
             }
-            
+
           </View>
         </View>
       </SafeAreaView>
@@ -104,6 +109,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  card :{
+    backgroundColor: '#fff',
+    margin: 5,
+    borderRadius: 3,
+    minHeight: 50,
+    padding: 10
   },
   header:{
     backgroundColor: '#61DAFB',
