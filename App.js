@@ -15,7 +15,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-//import Header from './src/components/Commons/Header';
+import Header from './src/components/Commons/Header';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -31,29 +31,28 @@ const {height, width} = Dimensions.get('window');
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor(props){
+    super(props)
+    this.state = {
+      filterOpen: false
+    }
+
+    this.switchFilter = this.switchFilter.bind(this)
+  }
+
+  switchFilter(){
+    this.setState({filterOpen: !this.state.filterOpen})
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
          
-          <View style={styles.header}>
-            
-            <View style={{width: 50}}>
-              <Text></Text>
-            </View>
-
-            <View style={{flex: 1, alignItems: 'center'}}>
-              <Text>Seniors</Text>
-            </View>
-            
-            <TouchableHighlight style={{width: 50}}>
-              <Text> filter </Text>
-            </TouchableHighlight>
-
-          </View>
+         <Header title="seniors" rightBtnLabel="Filter" rightBtnAction={()=> this.switchFilter()}/>
 
           <View style={styles.main}>
-            
+            <Text style={{color: '#fff'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
           </View>
         </View>
       </SafeAreaView>
@@ -94,6 +93,6 @@ const styles = StyleSheet.create({
   main:{
     backgroundColor: '#2f2f2f',
     flex: 1,
-    width: width
+    width: width,
   }
 });

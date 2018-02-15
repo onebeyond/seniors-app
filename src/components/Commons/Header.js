@@ -19,7 +19,7 @@ const Header = ({ rightBtnLabel, rightBtnAction, title }) =>
 			<Text>{title}</Text>
 		</View>
 			
-		<TouchableHighlight style={{width: 50}}>
+		<TouchableHighlight onPress={() => rightBtnAction()} style={{width: 50}}>
 			<Text> {rightBtnLabel} </Text>
 		</TouchableHighlight>
 
