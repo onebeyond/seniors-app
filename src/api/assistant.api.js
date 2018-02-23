@@ -9,9 +9,7 @@ const intersection = (a, b) => {
 
 const filterByEnabled = (obj) => Object.keys(obj).filter((key) => obj[key]);
 
-const byDuties = ({ duties }) => ({ skills }) => {
-	return intersection(filterByEnabled(duties), skills.duties).length === filterByEnabled(duties).length;
-};
+const byDuties = ({ duties }) => ({ skills }) => intersection(filterByEnabled(duties), skills.duties).length === filterByEnabled(duties).length;
 const byLanguages = ({ languages }) => ({ skills }) => intersection(filterByEnabled(languages), skills.languages).length === filterByEnabled(languages).length;
 const byPostCode = ({ postCode }) => (assistant) => true;
 const byPriceRange = ({ priceRange }) => (assistant) => true;

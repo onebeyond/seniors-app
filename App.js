@@ -20,9 +20,7 @@ import Filter from './src/components/Filter';
 import CardList from './src/components/CardList';
 import * as assistantApi from './src/api/assistant.api.js';
 
-
-const {height, width} = Dimensions.get('window');
-
+const { width } = Dimensions.get('window');
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -41,21 +39,30 @@ export default class App extends Component<Props> {
       data: []
     }
 
-    this.switchFilter = this.switchFilter.bind(this)
-    this.changeFilter = (category) => (value) => {
-      this.setState({ filter: Object.assign(this.state.filter, { [category]: { [value]: !this.state.filter[category][value] } })});
-    };
+    this.switchFilter = this.switchFilter.bind(this);
+    this.changeFilter = this.changeFilter.bind(this);
   }
 
   switchFilter(){
     this.setState({filterOpen: !this.state.filterOpen});
   }
 
-  componentDidMount(){
-    this.setState({loading: true})
+  changeFilter(category, value) {
+    const newFilter = this.state.filter;
+    newFilter[category][value] = !this.state.filter[category][value];
+    this.setState({ filter: newFilter });
+    this.refreshData();
+  }
+
+  refreshData() {
     assistantApi.fetchData(this.state.filter)
-      .then((response) => this.setState({data: response.data, loading: false, error: false}))
-      .catch((err) => this.setState({data: [], loading: false, error: true}));
+      .then((response) => this.setState({ data: response.data, loading: false, error: false }))
+      .catch((err) => this.setState({ data: [], loading: false, error: true }));
+  }
+
+  componentDidMount(){
+    this.setState({ loading: true })
+    this.refreshData();
   }
 
   render() {
@@ -103,12 +110,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    width: width,
+    width,
     height: 50,
   },
   main:{
     backgroundColor: '#2f2f2f',
     flex: 1,
-    width: width,
+    width,
   }
 });
