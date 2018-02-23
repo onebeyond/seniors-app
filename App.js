@@ -59,7 +59,7 @@ export default class App extends Component<Props> {
             {this.state.loading && <Text style={{color: '#fff'}}>loading..</Text>}
             {this.state.error && <Text style={{color: '#fff'}}>error</Text>}
             {this.state.filterOpen && <Filter/>}
-            {!this.state.filterOpen && <CardList/>}
+            {!this.state.filterOpen && <CardList data={this.state.data}/>}
           </View>
         </View>
       </SafeAreaView>
