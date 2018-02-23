@@ -19,9 +19,8 @@ const byPriceRange = ({ priceRange }) => (assistant) => true;
 export const fetchData = async (filter) =>
 	({
 		data: data
+		.filter(byDuties(filter))
+		.filter(byLanguages(filter))
+		.filter(byPostCode(filter))
+		.filter(byPriceRange(filter))
 	});
-
-	/*	.filter(byDuties(filter))
-			.filter(byLanguages(filter))
-			.filter(byPostCode(filter))
-			.filter(byPriceRange(filter))*/

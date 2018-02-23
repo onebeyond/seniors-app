@@ -32,6 +32,12 @@ export default class App extends Component<Props> {
       filterOpen: false,
       error: false,
       loading: false,
+      filter: {
+        duties: {},
+        languages: {},
+        postCode: null,
+        priceRange: {}
+      },
       data: []
     }
 
@@ -44,7 +50,7 @@ export default class App extends Component<Props> {
 
   componentDidMount(){
     this.setState({loading: true})
-    assistantApi.fetchData({})
+    assistantApi.fetchData(this.state.filter)
       .then((response) => this.setState({data: response.data, loading: false, error: false}))
       .catch((err) => this.setState({data: [], loading: false, error: true}))
   }
