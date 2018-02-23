@@ -30,32 +30,18 @@ export default class App extends Component<Props> {
       filterOpen: false,
       error: false,
       loading: false,
-      filter: {
-        duties: {},
-        languages: {},
-        postCode: null,
-        priceRange: {}
-      },
       data: []
     }
 
     this.switchFilter = this.switchFilter.bind(this);
-    this.changeFilter = this.changeFilter.bind(this);
   }
 
   switchFilter(){
     this.setState({filterOpen: !this.state.filterOpen});
   }
 
-  changeFilter(category, value) {
-    const newFilter = this.state.filter;
-    newFilter[category][value] = !this.state.filter[category][value];
-    this.setState({ filter: newFilter });
-    this.refreshData();
-  }
-
-  refreshData() {
-    assistantApi.fetchData(this.state.filter)
+  refreshData(filter) {
+    assistantApi.fetchData(filter)
       .then((response) => this.setState({ data: response.data, loading: false, error: false }))
       .catch((err) => this.setState({ data: [], loading: false, error: true }));
   }
@@ -74,7 +60,7 @@ export default class App extends Component<Props> {
             <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
             {this.state.loading && <Text style={{color: '#fff'}}>loading..</Text>}
             {this.state.error && <Text style={{color: '#fff'}}>error</Text>}
-            {this.state.filterOpen && <Filter changeFilter={this.changeFilter}/>}
+            {this.state.filterOpen && <Filter/>}
             {!this.state.filterOpen && <CardList data={this.state.data}/>}
           </View>
         </View>

@@ -14,11 +14,13 @@ const byLanguages = ({ languages }) => ({ skills }) => intersection(filterByEnab
 const byPostCode = ({ postCode }) => (assistant) => true;
 const byPriceRange = ({ priceRange }) => (assistant) => true;
 
-export const fetchData = async (filter) =>
-	({
+export const fetchData = async (filter) => {
+	if (!filter) return { data };
+	return {
 		data: data
 		.filter(byDuties(filter))
 		.filter(byLanguages(filter))
 		.filter(byPostCode(filter))
 		.filter(byPriceRange(filter))
-	});
+	};
+}
