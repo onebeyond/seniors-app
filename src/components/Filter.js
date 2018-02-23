@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
+import CheckBox from 'react-native-check-box';
 import {
 	View,
 	StyleSheet,
 	Text,
-	Dimensions,
-	TouchableHighlight
-} from 'react-native'
+	Dimensions
+} from 'react-native';
 
 const { height } = Dimensions.get('window');
 
@@ -15,19 +15,9 @@ const languages = [ 'Español', 'Vasco', 'Francés', 'Inglés', 'Gallego'];
 const Filter = ({ changeFilter }) =>
 	<View style={styles.filter}>
 		<Text style={{ fontWeight: 'bold', fontSize: 20 }}>Duties</Text>
-		{ duties.map((duty) =>
-			<TouchableHighlight key={duty} onPress={() => changeFilter('duties', duty)} style={{ width: 100 }}>
-				<Text>{duty}</Text>
-			</TouchableHighlight>
-		)
-		}
+		{ duties.map((duty) => <CheckBox leftText={duty} key={duty} onClick={(value) => changeFilter('duties', duty)}/>) }
 		<Text style={{ fontWeight: 'bold', fontSize: 20 }}>Languages</Text>
-		{ languages.map((lang) =>
-			<TouchableHighlight key={lang} onPress={() => changeFilter('languages', lang)} style={{ width: 100 }}>
-				<Text>{lang}</Text>
-			</TouchableHighlight>
-		)
-		}
+		{ languages.map((lang) => <CheckBox leftText={lang} key={lang} onClick={(value) => changeFilter('languages', lang)}/>) }
 	</View>
 
 const styles = StyleSheet.create({
