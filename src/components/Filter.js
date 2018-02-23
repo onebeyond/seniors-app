@@ -8,9 +8,9 @@ import {
 
 const {height, width} = Dimensions.get('window');
 
-const FilterScreen = () => 
+const Filter = () =>
 	<View style={styles.main}>
-		<Text>ListScreen</Text>
+		<Text>Filter</Text>
 	</View>
 
 const styles = StyleSheet.create({
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FilterScreen;
+export default Filter;

@@ -16,6 +16,8 @@ import {
 } from 'react-native';
 
 import Header from './src/components/Commons/Header';
+import Filter from './src/components/Filter';
+import CardList from './src/components/CardList';
 import * as assistantApi from './src/api/assistant.api.js';
 
 
@@ -43,45 +45,21 @@ export default class App extends Component<Props> {
   componentDidMount(){
     this.setState({loading: true})
     assistantApi.fetchData({})
-      .then((response) => 
-        this.setState({data: response.data, loading: false, error: false})
-        )
-      .catch((err)=>
-        this.setState({data: [], loading: false, error: true}))
+      .then((response) => this.setState({data: response.data, loading: false, error: false}))
+      .catch((err) => this.setState({data: [], loading: false, error: true}))
   }
 
   render() {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
-         
          <Header title="seniors" rightBtnLabel="Filter" rightBtnAction={()=> this.switchFilter()}/>
-
           <View style={styles.main}>
-            
             <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
-            
-            {this.state.loading && 
-              <Text style={{color: '#fff'}}>loading..</Text>
-            }
-            {this.state.error && 
-              <Text style={{color: '#fff'}}>error</Text>
-            }
-            {this.state.data.map(
-              (assistant) => 
-              <View key={assistant.personal.id} style={styles.card}>
-                <Text style={{fontWeight: 'bold', fontSize: 20}}>
-                  {assistant.personal.name}
-                </Text>
-                <Text>{assistant.price.range.from}-{assistant.price.range.to}{assistant.price.currency}/h</Text>
-                <Text style={{fontWeight: 'bold'}}>Duties</Text>
-                {assistant.skills.duties.map((duty) => <Text key={assistant.personal.id+duty+'duty'}>{duty}</Text>)}
-                <Text style={{fontWeight: 'bold'}}>languages</Text>
-                {assistant.skills.languages.map((lang) => <Text key={assistant.personal.id+lang+'lang'}>{lang}</Text>)}
-                </View>
-              )
-            }
-
+            {this.state.loading && <Text style={{color: '#fff'}}>loading..</Text>}
+            {this.state.error && <Text style={{color: '#fff'}}>error</Text>}
+            {this.state.filterOpen && <Filter/>}
+            {!this.state.filterOpen && <CardList/>}
           </View>
         </View>
       </SafeAreaView>

@@ -8,9 +8,9 @@ import {
 
 const {height, width} = Dimensions.get('window');
 
-const ListScreen = () => 
+const CardList = () =>
 	<View style={styles.main}>
-		<Text>ListScreen</Text>
+		<Text>CardList</Text>
 	</View>
 
 const styles = StyleSheet.create({
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ListScreen;
+export default CardList;
