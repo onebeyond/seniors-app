@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CheckBox from 'react-native-check-box';
+import CheckBox from 'react-native-checkbox';
 import {
 	View,
 	StyleSheet,
@@ -35,7 +35,17 @@ export default class Filter extends Component<Props> {
 	}
 
 	resetFilter() {
-		this.setState({ filter: initialFilter });
+		this.props.onClick()
+			.then(() => {
+				this.setState({
+					filter: {
+						duties: {},
+						languages: {},
+						postCode: null,
+						priceRange: {}
+					}
+			});
+		});
 	}
 
 	render() {
@@ -43,22 +53,23 @@ export default class Filter extends Component<Props> {
       <View style={styles.filter}>
 				<Text style={{ fontWeight: 'bold', fontSize: 20 }}>Duties</Text>
 				{
-					duties.map((duty) =>
-					<CheckBox
-						isChecked={!!this.state.filter.duties[duty]}
-						leftText={duty}
-						key={duty}
-						onClick={(value) => this.changeFilter('duties', duty)}
-					/>)
+					duties.map((duty) => {
+						return <CheckBox
+							checked={!!this.state.filter.duties[duty]}
+							label={duty}
+							key={duty}
+							onChange={(value) => this.changeFilter('duties', duty)}
+					/>
+					})
 				}
 				<Text style={{ fontWeight: 'bold', fontSize: 20 }}>Languages</Text>
 				{
 					languages.map((lang) =>
 					<CheckBox
-						isChecked={!!this.state.filter.languages[lang]}
-						leftText={lang}
+						checked={!!this.state.filter.languages[lang]}
+						label={lang}
 						key={lang}
-						onClick={(value) => this.changeFilter('languages', lang)}
+						onChange={(value) => this.changeFilter('languages', lang)}
 					/>)
 				}
 				<TouchableHighlight onPress={() => this.props.onClick(this.state.filter)}>
@@ -66,10 +77,7 @@ export default class Filter extends Component<Props> {
 						Apply
 					</Text>
 				</TouchableHighlight>
-				<TouchableHighlight onPress={() => {
-					this.resetFilter();
-					this.props.onClick(this.state.filter);
-				}}>
+				<TouchableHighlight onPress={() => this.resetFilter()}>
 					<Text style={styles.button}>
 						Reset
 					</Text>

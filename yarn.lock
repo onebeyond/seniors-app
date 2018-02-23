@@ -3506,7 +3506,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -3585,11 +3585,11 @@ react-devtools-core@3.0.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-react-native-check-box@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-check-box/-/react-native-check-box-2.0.2.tgz#70e34a930833fa3c44f283f52e96f2b00b12316d"
+react-native-checkbox@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-checkbox/-/react-native-checkbox-2.0.0.tgz#453bbfd2e055a21e69ebe7842414a055d50ff449"
   dependencies:
-    prop-types "^15.5.7"
+    prop-types "^15.5.10"
 
 react-native@0.53.0:
   version "0.53.0"
