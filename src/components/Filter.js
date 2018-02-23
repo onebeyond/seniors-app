@@ -6,18 +6,26 @@ import {
 	Dimensions
 } from 'react-native'
 
-const {height, width} = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
-const Filter = () =>
-	<View style={styles.main}>
-		<Text>Filter</Text>
+const duties = [ 'Lavar', 'Planchar', 'Cocinar', 'Enfermería'];
+const languages = [ 'Español', 'Vasco', 'Francés', 'Inglés', 'Gallego'];
+
+const Filter = ({ changeDuty }) =>
+	<View style={styles.filter}>
+		<Text style={{ fontWeight: 'bold', fontSize: 20 }}>Duties</Text>
+		{duties.map((duty) => <Text>{duty}</Text>)}
+		<Text style={{ fontWeight: 'bold', fontSize: 20 }}>Languages</Text>
+		{languages.map((lang) => <Text>{lang}</Text>)}
 	</View>
 
 const styles = StyleSheet.create({
-  main:{
-    backgroundColor: '#2f2f2f',
-    flex: 1,
-    width: width
+  filter:{
+    backgroundColor: '#fff',
+		margin: 5,
+		borderRadius: 3,
+		height,
+		padding: 10
   }
 });
 

@@ -42,17 +42,20 @@ export default class App extends Component<Props> {
     }
 
     this.switchFilter = this.switchFilter.bind(this)
+    this.changeDuty = (duty) => {
+      this.setState({ filter: Object.assign(filter, { duties: { [duty]: !this.state.filter.duties[duty] } })});
+    };
   }
 
   switchFilter(){
-    this.setState({filterOpen: !this.state.filterOpen})
+    this.setState({filterOpen: !this.state.filterOpen});
   }
 
   componentDidMount(){
     this.setState({loading: true})
     assistantApi.fetchData(this.state.filter)
       .then((response) => this.setState({data: response.data, loading: false, error: false}))
-      .catch((err) => this.setState({data: [], loading: false, error: true}))
+      .catch((err) => this.setState({data: [], loading: false, error: true}));
   }
 
   render() {
@@ -64,7 +67,7 @@ export default class App extends Component<Props> {
             <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
             {this.state.loading && <Text style={{color: '#fff'}}>loading..</Text>}
             {this.state.error && <Text style={{color: '#fff'}}>error</Text>}
-            {this.state.filterOpen && <Filter/>}
+            {this.state.filterOpen && <Filter changeDuty={this.changeDuty}/>}
             {!this.state.filterOpen && <CardList data={this.state.data}/>}
           </View>
         </View>
