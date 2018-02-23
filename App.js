@@ -88,13 +88,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-  card :{
-    backgroundColor: '#fff',
-    margin: 5,
-    borderRadius: 3,
-    minHeight: 50,
-    padding: 10
-  },
   header:{
     backgroundColor: '#61DAFB',
     display: 'flex',
