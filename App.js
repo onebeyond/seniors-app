@@ -34,6 +34,7 @@ export default class App extends Component<Props> {
     }
 
     this.switchFilter = this.switchFilter.bind(this);
+    this.refreshData = this.refreshData.bind(this);
   }
 
   switchFilter(){
@@ -60,7 +61,7 @@ export default class App extends Component<Props> {
             <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
             {this.state.loading && <Text style={{color: '#fff'}}>loading..</Text>}
             {this.state.error && <Text style={{color: '#fff'}}>error</Text>}
-            {this.state.filterOpen && <Filter/>}
+            {this.state.filterOpen && <Filter onClick={this.refreshData}/>}
             {!this.state.filterOpen && <CardList data={this.state.data}/>}
           </View>
         </View>

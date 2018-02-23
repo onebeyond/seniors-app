@@ -12,40 +12,64 @@ const { height } = Dimensions.get('window');
 
 const duties = [ 'Lavar', 'Planchar', 'Cocinar', 'Enfermería'];
 const languages = [ 'Español', 'Vasco', 'Francés', 'Inglés', 'Gallego'];
+const initialFilter = {
+	duties: {},
+	languages: {},
+	postCode: null,
+	priceRange: {}
+};
 
 export default class Filter extends Component<Props> {
-  constructor(props) {
+
+	constructor(props) {
     super(props)
-    this.state = {
-      filter: {
-        duties: {},
-        languages: {},
-        postCode: null,
-        priceRange: {}
-      }
-    }
+    this.state = { filter: initialFilter }
     this.changeFilter = this.changeFilter.bind(this);
+    this.resetFilter = this.resetFilter.bind(this);
 	}
 
 	changeFilter(category, value) {
     const newFilter = this.state.filter;
     newFilter[category][value] = !this.state.filter[category][value];
     this.setState({ filter: newFilter });
-  }
+	}
+
+	resetFilter() {
+		this.setState({ filter: initialFilter });
+	}
 
 	render() {
     return (
       <View style={styles.filter}>
 				<Text style={{ fontWeight: 'bold', fontSize: 20 }}>Duties</Text>
-				{ duties.map((duty) => <CheckBox leftText={duty} key={duty} onClick={(value) => this.changeFilter('duties', duty)}/>) }
+				{
+					duties.map((duty) =>
+					<CheckBox
+						isChecked={!!this.state.filter.duties[duty]}
+						leftText={duty}
+						key={duty}
+						onClick={(value) => this.changeFilter('duties', duty)}
+					/>)
+				}
 				<Text style={{ fontWeight: 'bold', fontSize: 20 }}>Languages</Text>
-				{ languages.map((lang) => <CheckBox leftText={lang} key={lang} onClick={(value) => this.changeFilter('languages', lang)}/>) }
-				<TouchableHighlight>
+				{
+					languages.map((lang) =>
+					<CheckBox
+						isChecked={!!this.state.filter.languages[lang]}
+						leftText={lang}
+						key={lang}
+						onClick={(value) => this.changeFilter('languages', lang)}
+					/>)
+				}
+				<TouchableHighlight onPress={() => this.props.onClick(this.state.filter)}>
 					<Text style={styles.button}>
 						Apply
 					</Text>
 				</TouchableHighlight>
-				<TouchableHighlight>
+				<TouchableHighlight onPress={() => {
+					this.resetFilter();
+					this.props.onClick(this.state.filter);
+				}}>
 					<Text style={styles.button}>
 						Reset
 					</Text>
