@@ -44,7 +44,7 @@ export default class App extends Component<Props> {
   refreshData(filter) {
     assistantApi.fetchData(filter)
       .then((response) => this.setState({ data: response.data, loading: false, error: false }))
-      .catch((err) => this.setState({ data: [], loading: false, error: true }));
+      .catch((err) => this.setState({ data: [], loading: false, error: err.stack }));
   }
 
   componentDidMount(){
@@ -56,11 +56,11 @@ export default class App extends Component<Props> {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
-         <Header title="seniors" rightBtnLabel="Filter" rightBtnAction={()=> this.switchFilter()}/>
+         <Header title="seniors" rightBtnLabel={this.state.filterOpen ? 'List' : 'Filter'} rightBtnAction={()=> this.switchFilter()}/>
           <View style={styles.main}>
             <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
             {this.state.loading && <Text style={{color: '#fff'}}>loading..</Text>}
-            {this.state.error && <Text style={{color: '#fff'}}>error</Text>}
+            {this.state.error && <Text style={{color: '#fff'}}>{this.state.error}</Text>}
             {this.state.filterOpen && <Filter onClick={this.refreshData}/>}
             {!this.state.filterOpen && <CardList data={this.state.data}/>}
           </View>
