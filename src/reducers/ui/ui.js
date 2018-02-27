@@ -1,5 +1,5 @@
 import {
-  FOO
+  SHOW_ERROR, CLOSE_ERROR, OPEN_FILTER, CLOSE_FILTER,
 } from '../../actions/ui/ui';
 
 
@@ -13,9 +13,24 @@ const initiaUi = {
 export function ui(state = initiaUi, action) {
   let nextState;
   switch (action.type) {
-    case FOO:
+    case SHOW_ERROR:
       nextState = {
-        foo: state.ui.foo + 1
+        error: action.payload.error
+      };
+      break;
+    case CLOSE_ERROR:
+      nextState = {
+        error: false
+      };
+      break;
+    case OPEN_FILTER:
+      nextState = {
+        filterOpen: true
+      };
+      break;
+    case CLOSE_FILTER:
+      nextState = {
+        filterOpen: false
       };
       break;
     default:

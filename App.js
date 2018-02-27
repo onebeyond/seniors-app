@@ -17,11 +17,7 @@ import {
 import { createStore } from 'redux'
 import { Provider } from 'react-redux';
 
-import MainScreen from './src/screens/MainScreen/template';
-import Header from './src/components/Commons/Header';
-import Filter from './src/components/Filter/Filter';
-import CardList from './src/components/CardList/CardList';
-import * as assistantApi from './src/api/assistant.api.js';
+import MainScreen from './src/screens/MainScreen';
 
 import configureStore from './src/configureStore.js';
 

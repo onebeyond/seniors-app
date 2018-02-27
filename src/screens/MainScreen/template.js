@@ -15,7 +15,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import Header from '../../components/Commons/Header';
+import Header from '../../components/commons/header/Header';
 import Filter from '../../components/Filter/Filter';
 import CardList from '../../components/CardList/CardList';
 import * as assistantApi from '../../api/assistant.api.js';
@@ -30,7 +30,6 @@ export default class MainScreen extends Component<Props> {
   constructor(props){
     super(props)
     this.state = {
-      filterOpen: false,
       error: false,
       loading: false,
       data: []
@@ -41,7 +40,8 @@ export default class MainScreen extends Component<Props> {
   }
 
   switchFilter(){
-    this.setState({filterOpen: !this.state.filterOpen});
+    const { openFilter, closeFilter, filterOpen} = this.props;
+    filterOpen ? closeFilter() : openFilter();
   }
 
   refreshData(filter) {
@@ -56,16 +56,19 @@ export default class MainScreen extends Component<Props> {
   }
 
   render() {
+
+    const { filterOpen } = this.props;
+    
     return (
       <SafeAreaView style={styles.safeArea}>
         {<View style={styles.container}>
-         <Header title="seniors" rightBtnLabel={this.state.filterOpen ? 'List' : 'Filter'} rightBtnAction={()=> this.switchFilter()}/>
+         <Header title="seniors" rightBtnLabel={filterOpen ? 'List' : 'Filter'} rightBtnAction={()=> this.switchFilter()}/>
           <View style={styles.main}>
-            <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
+            <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{filterOpen ? 'Filter' : 'List'}</Text>
             {this.state.loading && <Text style={{color: '#fff'}}>Loading..</Text>}
             {this.state.error && <Text style={{color: '#fff'}}>{this.state.error}</Text>}
-            {this.state.filterOpen && <Filter onClick={this.refreshData}/>}
-            {!this.state.filterOpen && <CardList data={this.state.data}/>}
+            {filterOpen && <Filter onClick={this.refreshData}/>}
+            {!filterOpen && <CardList data={this.state.data}/>}
           </View>
         </View>}
       </SafeAreaView>
