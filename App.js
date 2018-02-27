@@ -20,6 +20,9 @@ import Filter from './src/components/Filter/Filter';
 import CardList from './src/components/CardList/CardList';
 import * as assistantApi from './src/api/assistant.api.js';
 
+import configureStore from './src/configureStore.js';
+
+
 const { width } = Dimensions.get('window');
 
 type Props = {};
@@ -32,6 +35,9 @@ export default class App extends Component<Props> {
       loading: false,
       data: []
     }
+
+    this.store = configureStore();
+    //this.state = this.store.getState();
 
     this.switchFilter = this.switchFilter.bind(this);
     this.refreshData = this.refreshData.bind(this);

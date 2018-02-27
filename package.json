@@ -11,7 +11,8 @@
     "react": "16.2.0",
     "react-native": "0.53.0",
     "react-native-checkbox": "^2.0.0",
-    "react-redux": "^5.0.7"
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-jest": "22.2.2",
