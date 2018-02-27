@@ -35,7 +35,16 @@ export default class Filter extends Component<Props> {
 	}
 
 	resetFilter() {
-		this.props.onClick()
+		console.log('this.props', this.props);
+		this.setState({
+			filter: {
+				duties: {},
+				languages: {},
+				postCode: null,
+				priceRange: {}
+			}
+	});
+		/* this.props.onClick()
 			.then(() => {
 				this.setState({
 					filter: {
@@ -45,7 +54,7 @@ export default class Filter extends Component<Props> {
 						priceRange: {}
 					}
 			});
-		});
+		}); */
 	}
 
 	render() {

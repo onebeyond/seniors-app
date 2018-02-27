@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import Card from '../Card/Card';
 import {
 	View,
 	StyleSheet,
@@ -8,7 +8,7 @@ import {
 
 const { width } = Dimensions.get('window');
 
-const CardList = ({ data }) =>
+const CardList = ({ data, index }) =>
 	<View style={styles.main}>
 		{ data.map((assistant) => <Card assistant={assistant}/>) }
 	</View>

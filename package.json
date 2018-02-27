@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "react-native run-android",
     "test": "jest"
   },
   "dependencies": {
     "react": "16.2.0",
     "react-native": "0.53.0",
-    "react-native-checkbox": "^2.0.0"
+    "react-native-checkbox": "^2.0.0",
+    "react-redux": "^5.0.7"
   },
   "devDependencies": {
     "babel-jest": "22.2.2",

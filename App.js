@@ -16,8 +16,8 @@ import {
 } from 'react-native';
 
 import Header from './src/components/Commons/Header';
-import Filter from './src/components/Filter';
-import CardList from './src/components/CardList';
+import Filter from './src/components/Filter/Filter';
+import CardList from './src/components/CardList/CardList';
 import * as assistantApi from './src/api/assistant.api.js';
 
 const { width } = Dimensions.get('window');
