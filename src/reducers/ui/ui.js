@@ -1,12 +1,12 @@
 import {
-  SHOW_ERROR, CLOSE_ERROR, OPEN_FILTER, CLOSE_FILTER,
+  SHOW_ERROR, CLOSE_ERROR, OPEN_FILTER, CLOSE_FILTER, SET_LOADING_STATE
 } from '../../actions/ui/ui';
 
 
 const initiaUi = {
   filterOpen: false,
   error: false,
-  loading: false,
+  loading: true,
   data: []
 };
 
@@ -31,6 +31,11 @@ export function ui(state = initiaUi, action) {
     case CLOSE_FILTER:
       nextState = {
         filterOpen: false
+      };
+      break;
+    case SET_LOADING_STATE:
+      nextState = {
+        loading: action.payload.loading
       };
       break;
     default:

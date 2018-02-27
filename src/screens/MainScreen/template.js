@@ -31,7 +31,7 @@ export default class MainScreen extends Component<Props> {
     super(props)
     this.state = {
       error: false,
-      loading: false,
+      //loading: false,
       data: []
     }
 
@@ -45,19 +45,29 @@ export default class MainScreen extends Component<Props> {
   }
 
   refreshData(filter) {
+    const { setLoadingState, showError} = this.props;
     return assistantApi.fetchData(filter)
-      .then((response) => this.setState({ data: response.data, loading: false, error: false }))
-      .catch((err) => this.setState({ data: [], loading: false, error: err.message }));
+      .then((response) => {
+        this.setState({ data: response.data })
+        setLoadingState({ loading: false });
+      })
+      .catch((err) => {
+        this.setState({ data: [] });
+        setLoadingState({ loading: false });
+        showError({ error: err.message });
+      });
   }
 
+
+
   componentDidMount(){
-    this.setState({ loading: true })
+    this.props.setLoadingState({ loading: true });
     this.refreshData();
   }
 
   render() {
 
-    const { filterOpen } = this.props;
+    const { filterOpen, loading, error } = this.props;
     
     return (
       <SafeAreaView style={styles.safeArea}>
@@ -65,8 +75,8 @@ export default class MainScreen extends Component<Props> {
          <Header title="seniors" rightBtnLabel={filterOpen ? 'List' : 'Filter'} rightBtnAction={()=> this.switchFilter()}/>
           <View style={styles.main}>
             <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{filterOpen ? 'Filter' : 'List'}</Text>
-            {this.state.loading && <Text style={{color: '#fff'}}>Loading..</Text>}
-            {this.state.error && <Text style={{color: '#fff'}}>{this.state.error}</Text>}
+            {loading && <Text style={{color: '#fff'}}>Loading..</Text>}
+            {error && <Text style={{color: '#fff'}}>{error}</Text>}
             {filterOpen && <Filter onClick={this.refreshData}/>}
             {!filterOpen && <CardList data={this.state.data}/>}
           </View>
