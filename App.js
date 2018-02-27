@@ -3,7 +3,7 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
+import { AppRegistry } from 'react-native';
 import React, { Component } from 'react';
 import {
   Platform,
@@ -14,7 +14,10 @@ import {
   Dimensions,
   TouchableHighlight
 } from 'react-native';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux';
 
+import MainScreen from './src/screens/MainScreen/template';
 import Header from './src/components/Commons/Header';
 import Filter from './src/components/Filter/Filter';
 import CardList from './src/components/CardList/CardList';
@@ -26,89 +29,21 @@ import configureStore from './src/configureStore.js';
 const { width } = Dimensions.get('window');
 
 type Props = {};
-export default class App extends Component<Props> {
+class App extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      filterOpen: false,
-      error: false,
-      loading: false,
-      data: []
-    }
-
+    
     this.store = configureStore();
-    //this.state = this.store.getState();
-
-    this.switchFilter = this.switchFilter.bind(this);
-    this.refreshData = this.refreshData.bind(this);
-  }
-
-  switchFilter(){
-    this.setState({filterOpen: !this.state.filterOpen});
-  }
-
-  refreshData(filter) {
-    return assistantApi.fetchData(filter)
-      .then((response) => this.setState({ data: response.data, loading: false, error: false }))
-      .catch((err) => this.setState({ data: [], loading: false, error: err.message }));
-  }
-
-  componentDidMount(){
-    this.setState({ loading: true })
-    this.refreshData();
-  }
+  } 
 
   render() {
     return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.container}>
-         <Header title="seniors" rightBtnLabel={this.state.filterOpen ? 'List' : 'Filter'} rightBtnAction={()=> this.switchFilter()}/>
-          <View style={styles.main}>
-            <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{this.state.filterOpen ? 'Filter' : 'List'}</Text>
-            {this.state.loading && <Text style={{color: '#fff'}}>Loading..</Text>}
-            {this.state.error && <Text style={{color: '#fff'}}>{this.state.error}</Text>}
-            {this.state.filterOpen && <Filter onClick={this.refreshData}/>}
-            {!this.state.filterOpen && <CardList data={this.state.data}/>}
-          </View>
-        </View>
-      </SafeAreaView>
+      <Provider store={this.store}>
+        <MainScreen></MainScreen>
+      </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  safeArea:{
-    flex: 1,
-    backgroundColor: '#F5FCFF'
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  header:{
-    backgroundColor: '#61DAFB',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    width,
-    height: 50,
-  },
-  main:{
-    backgroundColor: '#2f2f2f',
-    flex: 1,
-    width,
-  }
-});
+
+export default App;

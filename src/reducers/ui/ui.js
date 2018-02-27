@@ -4,7 +4,10 @@ import {
 
 
 const initiaUi = {
-  foo: 0,
+  filterOpen: false,
+  error: false,
+  loading: false,
+  data: []
 };
 
 export function ui(state = initiaUi, action) {

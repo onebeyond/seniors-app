@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 //import createExpirationTransform from 'redux-persist-transform-expire';
 
 import { AsyncStorage } from 'react-native';
-/* import createSagaMiddleware from 'redux-saga'; */
+//import createSagaMiddleware from 'redux-saga';
 
 import RootReducer from './reducers';
 /* import rootSagas from './sagas'; */
@@ -12,12 +12,13 @@ import RootReducer from './reducers';
 // Check if gloval.__DEV__ exist in all the environments/devices;
 const composeEnhancers = global.__DEV__
 ? (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose) : compose;
+
 //const sagaMiddleware = createSagaMiddleware();
 
 
 export default function configureStore() {
 	const store = createStore(
-		//RootReducer,
+		RootReducer,
 		composeEnhancers(
 			//applyMiddleware(sagaMiddleware),
 			//autoRehydrate()
