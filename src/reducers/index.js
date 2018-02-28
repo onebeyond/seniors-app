@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
-import { user } from './user/user';
+import { candidates } from './candidates/candidates';
 import { ui } from './ui/ui';
 
 
 const AppReducer = combineReducers({
   root: combineReducers({
-    user,
+    candidates,
     ui
   })
 });

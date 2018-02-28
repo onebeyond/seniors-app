@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { selectCandidate } from '../../actions/user/user';
-
 import Card from './template';
 
 
@@ -12,7 +10,7 @@ Card.propTypes = {
 
 
 const mapDispatchToProps = dispatch => ({
-  favorited: () => dispatch(selectCandidate())
+  //favorited: () => dispatch(selectCandidate())
   /* fselectUserPoolId: (userPoolId) => dispatch(profileLoginSecondStep(userPoolId)), */
 });
 

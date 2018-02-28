@@ -11,12 +11,13 @@ import {
   Text,
   View,
   SafeAreaView,
+  ScrollView,
   Dimensions,
   TouchableHighlight
 } from 'react-native';
 
 import Header from '../../components/commons/header/Header';
-import Filter from '../../components/Filter/Filter';
+import Filter from '../../components/Filter';
 import CardList from '../../components/CardList/CardList';
 import * as assistantApi from '../../api/assistant.api.js';
 
@@ -30,12 +31,8 @@ export default class MainScreen extends Component<Props> {
   constructor(props){
     super(props)
     this.state = {
-      error: false,
-      //loading: false,
-      data: []
     }
 
-    this.switchFilter = this.switchFilter.bind(this);
     this.refreshData = this.refreshData.bind(this);
   }
 
@@ -44,42 +41,63 @@ export default class MainScreen extends Component<Props> {
     filterOpen ? closeFilter() : openFilter();
   }
 
-  refreshData(filter) {
-    const { setLoadingState, showError} = this.props;
-    return assistantApi.fetchData(filter)
+
+  getCandidates() {
+    const { setAllCandidates, setLoadingState, showError } = this.props;
+    assistantApi.fetchData()
       .then((response) => {
-        this.setState({ data: response.data })
+        setAllCandidates({ allCandidates: response.data });
         setLoadingState({ loading: false });
       })
       .catch((err) => {
-        this.setState({ data: [] });
+        setLoadingState({ loading: false });
+        showError({ error: err.message });
+      });
+  }
+
+  refreshData(filter) {
+    const { setLoadingState, showError, setAllCandidates, setMatchingCandidates, closeFilter, setCandidatesFilter } = this.props;
+    setCandidatesFilter(filter);
+    closeFilter();
+    return assistantApi.fetchData(filter.filter)
+      .then((response) => {
+        setMatchingCandidates({ matchingCandidates: response.data });
+        setLoadingState({ loading: false });
+      })
+      .catch((err) => {
         setLoadingState({ loading: false });
         showError({ error: err.message });
       });
   }
 
 
-
   componentDidMount(){
     this.props.setLoadingState({ loading: true });
-    this.refreshData();
+    //this.refreshData();
+    this.getCandidates();
   }
 
   render() {
 
-    const { filterOpen, loading, error } = this.props;
+    const { filterOpen, loading, error, allCandidates, candidatesFilter, matchingCandidates } = this.props;
     
     return (
       <SafeAreaView style={styles.safeArea}>
         {<View style={styles.container}>
          <Header title="seniors" rightBtnLabel={filterOpen ? 'List' : 'Filter'} rightBtnAction={()=> this.switchFilter()}/>
-          <View style={styles.main}>
+          <ScrollView style={styles.main}>
             <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{filterOpen ? 'Filter' : 'List'}</Text>
             {loading && <Text style={{color: '#fff'}}>Loading..</Text>}
             {error && <Text style={{color: '#fff'}}>{error}</Text>}
-            {filterOpen && <Filter onClick={this.refreshData}/>}
-            {!filterOpen && <CardList data={this.state.data}/>}
-          </View>
+            {filterOpen && 
+              <Filter data={allCandidates} 
+                      refreshFilter={this.refreshData}
+              />
+            }
+            {!filterOpen && 
+              <CardList data={ candidatesFilter ? matchingCandidates : allCandidates}/>
+            }
+          </ScrollView>
         </View>}
       </SafeAreaView>
     );

@@ -7,7 +7,6 @@ const initiaUi = {
   filterOpen: false,
   error: false,
   loading: true,
-  data: []
 };
 
 export function ui(state = initiaUi, action) {
@@ -15,26 +14,31 @@ export function ui(state = initiaUi, action) {
   switch (action.type) {
     case SHOW_ERROR:
       nextState = {
+        ...state,
         error: action.payload.error
       };
       break;
     case CLOSE_ERROR:
       nextState = {
+        ...state,
         error: false
       };
       break;
     case OPEN_FILTER:
       nextState = {
+        ...state,
         filterOpen: true
       };
       break;
     case CLOSE_FILTER:
       nextState = {
+        ...state,
         filterOpen: false
       };
       break;
     case SET_LOADING_STATE:
       nextState = {
+        ...state,
         loading: action.payload.loading
       };
       break;
