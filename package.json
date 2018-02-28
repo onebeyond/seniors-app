@@ -5,7 +5,12 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
-    "test": "jest"
+    "test": "jest",
+    "step1": "git checkout 5dd610a9c06f208703dc6336ad3e235e0ff17cdc",
+    "step2": "git checkout f4ed9c82c45ee888835b2f15c9b5319bd2f8beb2",
+    "step3": "git checkout dcf4d0e624cb968699faae101e0d817aff1e3110",
+    "step4": "git checkout 1934d74d56b62e10ed5b544c176b386facf30975",
+    "step5": "git checkout dc347bc5f8ea2f94e5e1a64a777b452cbc58bd8e"
   },
   "dependencies": {
     "react": "16.2.0",
