@@ -1,7 +1,15 @@
-import React from 'react';
-import {
-	Text
-} from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default ({ filtered, total }) =>
-  <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{filtered} out of {total}</Text>
+import FilterInfo from './template';
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+const mapStateToProps = state => ({
+  filtered: state.root.candidates.matchingCandidates.length,
+  total: state.root.candidates.allCandidates.length
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilterInfo);

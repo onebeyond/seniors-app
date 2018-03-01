@@ -95,7 +95,7 @@ export default class MainScreen extends Component<Props> {
             }
             {!filterOpen &&
               <View style={styles.container}>
-                <FilterInfo filtered={matchingCandidates.length} total={allCandidates.length}/>
+                <FilterInfo/>
                 <CardList data={ candidatesFilter ? matchingCandidates : allCandidates}/>
               </View>
             }
