@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import FilterInfo from './template';
+import { resetFilter } from '../../actions/candidates/candidates';
 
 const mapDispatchToProps = dispatch => ({
-
+  resetFilter: () => dispatch(resetFilter())
 });
 
 const mapStateToProps = state => ({

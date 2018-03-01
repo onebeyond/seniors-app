@@ -1,5 +1,5 @@
 import {
-  SET_ALL_CANDIDATES, SET_MATCHING_CANDIDATES, SET_CANDIDATES_FILTER,
+  SET_ALL_CANDIDATES, SET_MATCHING_CANDIDATES, SET_CANDIDATES_FILTER, RESET_FILTER
 } from '../../actions/candidates/candidates';
 
 
@@ -15,7 +15,8 @@ export function candidates(state = initiaCandidates, action) {
     case SET_ALL_CANDIDATES:
       nextState = {
         ...state,
-        allCandidates: action.payload.allCandidates
+        allCandidates: action.payload.allCandidates,
+        matchingCandidates: action.payload.allCandidates
       };
       break;
     case SET_MATCHING_CANDIDATES:
@@ -28,6 +29,13 @@ export function candidates(state = initiaCandidates, action) {
       nextState = {
         ...state,
         filter: action.payload.filter
+      };
+      break;
+    case RESET_FILTER:
+      nextState = {
+        ...state,
+        filter: null,
+        matchingCandidates: state.allCandidates
       };
       break;
     default:
