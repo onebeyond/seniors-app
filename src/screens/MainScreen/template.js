@@ -18,6 +18,7 @@ import {
 
 import Header from '../../components/commons/header/Header';
 import Filter from '../../components/Filter';
+import FilterInfo from '../../components/FilterInfo';
 import CardList from '../../components/CardList/CardList';
 import * as assistantApi from '../../api/assistant.api.js';
 
@@ -80,7 +81,7 @@ export default class MainScreen extends Component<Props> {
   render() {
 
     const { filterOpen, loading, error, allCandidates, candidatesFilter, matchingCandidates } = this.props;
-    
+
     return (
       <SafeAreaView style={styles.safeArea}>
         {<View style={styles.container}>
@@ -89,13 +90,14 @@ export default class MainScreen extends Component<Props> {
             <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{filterOpen ? 'Filter' : 'List'}</Text>
             {loading && <Text style={{color: '#fff'}}>Loading..</Text>}
             {error && <Text style={{color: '#fff'}}>{error}</Text>}
-            {filterOpen && 
-              <Filter data={allCandidates} 
-                      refreshFilter={this.refreshData}
-              />
+            {filterOpen &&
+              <Filter data={allCandidates} refreshFilter={this.refreshData}/>
             }
-            {!filterOpen && 
-              <CardList data={ candidatesFilter ? matchingCandidates : allCandidates}/>
+            {!filterOpen &&
+              <View style={styles.container}>
+                <FilterInfo filtered={matchingCandidates.length} total={allCandidates.length}/>
+                <CardList data={ candidatesFilter ? matchingCandidates : allCandidates}/>
+              </View>
             }
           </ScrollView>
         </View>}
