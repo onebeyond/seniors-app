@@ -10,7 +10,7 @@ const { width } = Dimensions.get('window');
 
 const CardList = ({ data, index }) =>
 	<View style={styles.main}>
-		{ data.map((assistant) => <Card assistant={assistant}/>) }
+		{ data.map((assistant, index) => <Card key={index} assistant={assistant}/>) }
 	</View>
 
 const styles = StyleSheet.create({
