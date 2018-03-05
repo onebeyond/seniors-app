@@ -5,7 +5,7 @@ import Card from './template';
 
 
 Card.propTypes = {
-  loading: PropTypes.object,
+  loading: PropTypes.bool,
 };
 
 
