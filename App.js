@@ -21,6 +21,7 @@ import MainScreen from './src/screens/MainScreen';
 
 import configureStore from './src/configureStore.js';
 
+import Login from './src/components/Login';
 
 const { width } = Dimensions.get('window');
 
@@ -35,7 +36,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={this.store}>
-        <MainScreen></MainScreen>
+        <Login/>
       </Provider>
     );
   }
