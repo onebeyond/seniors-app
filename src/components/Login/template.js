@@ -44,9 +44,10 @@ export default class Login extends Component {
   }
 
   resetForm(){
-    this.setState(this.baseState)
+    this.setState(this.initialState, () => {
+      console.log(this.state, 'Resetting state')
+    });
   }
-
   handleName(text) {
     this.setState({ userName: text })
   }
@@ -55,8 +56,6 @@ export default class Login extends Component {
     this.setState({ password: text })
   }
 
-
-
   render() {
     return (
       <View style={styles.container}>
@@ -64,12 +63,14 @@ export default class Login extends Component {
           style={styles.inputField}
           placeholder='Name'
           onChangeText={text => this.handleName(text)}
+          value={this.state.userName}
         />
         <TextInput
           style={styles.inputField}
           placeholder='Password'
           onChangeText={text => this.handlePassword(text)}
           secureTextEntry={true}
+          value={this.state.password}
         />
         <Button
           title="Login!"
