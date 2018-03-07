@@ -4,22 +4,11 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Button
+  Button,
+  Image
 } from 'react-native';
+//import GSLogo from '../../assets' 
 
-class FormTextInput extends Component {
-  render() {
-    return (
-      <TextInput
-        onChangeText={(txt) => this.props.onChange(txt)}
-        editable={true}
-        maxLength={40}
-        style={styles.inputField}
-        value={this.props.value}
-      />
-    );
-  }
-}
 
 export default class Login extends Component {
   constructor(props) {
@@ -59,6 +48,7 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image source={require('../../assets/GS.png')} style={styles.GSLogo} />
         <TextInput
           style={styles.inputField}
           placeholder='Name'
@@ -74,7 +64,7 @@ export default class Login extends Component {
         />
         <Button
           title="Login!"
-          color="#841584"
+          color="green"
           onPress={this.handleSubmit}
         />
       </View>
@@ -87,16 +77,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'aqua'
+    flexWrap: 'nowrap',
+    backgroundColor: 'white'
   },
   inputField: {
     borderRadius: 4,
-    borderWidth: 0.5,
+    borderWidth: 1,
     width: 200,
-    borderColor: 'red',
+    borderColor: 'aqua',
     color: 'black',
     height: 60
+  },
+  GSLogo:{
+    width: 200, 
+    height: 200,
+    alignSelf: 'center'
   }
 });
