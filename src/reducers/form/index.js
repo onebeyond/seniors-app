@@ -11,18 +11,16 @@ import {
 
   
   export function formReducer(state = initialState, action) {
-    let nextState;
     switch (action.type) {
       case LOGIN:
-        return nextState ={
-            ...state, 
+        return Object.assign({}, state, {
             userName: action.payload.userName,
             password: action.payload.password
-        }
+        })
         break;
       default:
         return state;
     }
-    return nextState || state;
+    return state;
   }
   
