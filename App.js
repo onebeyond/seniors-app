@@ -14,17 +14,30 @@ import {
   Dimensions,
   TouchableHighlight
 } from 'react-native';
+
 import { createStore } from 'redux'
 import { Provider } from 'react-redux';
+import { StackNavigator } from 'react-navigation';
 
 import MainScreen from './src/screens/MainScreen';
+import Login from './src/components/Login';
 
 import configureStore from './src/configureStore.js';
 
-import Login from './src/components/Login';
 
 const { width } = Dimensions.get('window');
 
+{/*
+  TODO:
+    1. Here some usefull links:
+      - https://m.oursky.com/how-we-restructured-our-app-with-react-navigation-98a89e219c26
+      - https://github.com/react-navigation/react-navigation/tree/master/examples/ReduxExample
+      - Este el mejor https://github.com/shubhnik/redux-react-navigation-demos/tree/master/src
+      - https://medium.freecodecamp.org/managing-state-in-a-react-navigation-app-with-redux-6d0b680fb595
+      - Curso: https://www.udemy.com/the-complete-react-native-and-redux-course/
+    3. 
+*/
+}
 type Props = {};
 class App extends Component {
   constructor(props){
