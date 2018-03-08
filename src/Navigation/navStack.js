@@ -1,16 +1,19 @@
-import { StackNavigator } from 'react-navigation';
-import Login from '../components/Login';
-import MainScreen from '../screens/MainScreen';
+import { StackNavigator } from "react-navigation";
+import Login from "../components/Login";
+import MainScreen from "../screens/MainScreen";
 
-
-const navigator = StackNavigator({
-    login: {
-        screen: Login
+const navigator = StackNavigator(
+  {
+    Login: {
+      screen: Login
     },
-    mainScreen: {
-        screen: MainScreen
+    MainScreen: {
+      screen: MainScreen
     }
-})
-
+  },
+  {
+    initialRouteName: "Login"
+  }
+);
 
 export default navigator;
