@@ -7,7 +7,13 @@ import {
   Button,
   Image
 } from 'react-native';
-//import GSLogo from '../../assets' 
+
+{
+  /*
+    TODO:
+    - Import logo from assets (import GSLogo from '../../assets' )
+  */
+}
 
 
 export default class Login extends Component {
