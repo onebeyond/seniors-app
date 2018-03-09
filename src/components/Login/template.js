@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet, TextInput, Button, Image } from "react-native";
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, TextInput, Button, Image } from 'react-native';
 
-import { NavigationActions } from "react-navigation";
+import { NavigationActions } from 'react-navigation';
 
-const GSLogo = require("../../assets/GS.png"); //static required
+const GSLogo = require('../../assets/GS.png'); //static required
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
-      password: ""
+      userName: '',
+      password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleName = this.handleName.bind(this);
@@ -20,7 +20,7 @@ export default class Login extends Component {
 
   navigate = () => {
     const navigateToMainScreen = NavigationActions.navigate({
-      routeName: "MainScreen"
+      routeName: 'MainScreen'
     });
     this.props.navigation.dispatch(navigateToMainScreen);
   };
@@ -37,7 +37,7 @@ export default class Login extends Component {
 
   resetForm() {
     this.setState(this.initialState, () => {
-      console.log(this.state, "Resetting state");
+      console.log(this.state, 'Resetting state');
     });
   }
   handleName(text) {
@@ -74,23 +74,23 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-around",
-    alignItems: "center",
-    flexWrap: "nowrap",
-    backgroundColor: "white"
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexWrap: 'nowrap',
+    backgroundColor: 'white'
   },
   inputField: {
     borderRadius: 4,
     borderWidth: 1,
     width: 200,
-    borderColor: "aqua",
-    color: "black",
+    borderColor: 'aqua',
+    color: 'black',
     height: 60
   },
   GSLogo: {
     width: 200,
     height: 200,
-    alignSelf: "center"
+    alignSelf: 'center'
   }
 });
