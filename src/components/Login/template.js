@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, TextInput, Button, Image } from "react-native";
 
 import { NavigationActions } from "react-navigation";
-{
-  /*
-    TODO:
-    - Import logo from assets (import GSLogo from '../../assets' )
-  */
-}
+
+const GSLogo = require("../../assets/GS.png"); //static required
 
 export default class Login extends Component {
   constructor(props) {
@@ -55,7 +51,7 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require("../../assets/GS.png")} style={styles.GSLogo} />
+        <Image source={GSLogo} style={styles.GSLogo} />
         <TextInput
           style={styles.inputField}
           placeholder="Name"

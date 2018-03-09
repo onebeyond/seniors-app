@@ -8,7 +8,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  isLoaded: state.isLoaded
+  isLoggedIn: state.isLoggedIn
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
