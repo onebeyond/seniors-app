@@ -1,8 +1,8 @@
-import { LOGIN } from "../../actions/form";
+import { LOGIN } from '../../actions/form';
 
 const initialState = {
   isLoggedIn: false,
-  userName: ""
+  userName: ''
 };
 
 export function formReducer(state = initialState, action) {

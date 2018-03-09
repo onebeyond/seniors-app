@@ -3,8 +3,8 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-import { AppRegistry } from "react-native";
-import React, { Component } from "react";
+import { AppRegistry } from 'react-native';
+import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
@@ -13,15 +13,15 @@ import {
   SafeAreaView,
   Dimensions,
   TouchableHighlight
-} from "react-native";
+} from 'react-native';
 
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import AppNavigation from "./src/Navigation";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import AppNavigation from './src/Navigation';
 
-import configureStore from "./src/configureStore.js";
+import configureStore from './src/configureStore.js';
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 
 type Props = {};
 class App extends Component {

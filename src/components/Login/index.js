@@ -1,7 +1,7 @@
-import Login from "./template";
-import { connect } from "react-redux";
+import Login from './template';
+import { connect } from 'react-redux';
 
-import { sendUserData } from "../../actions/form";
+import { sendUserData } from '../../actions/form';
 
 const mapDispatchToProps = dispatch => ({
   sendUserData: userData => dispatch(sendUserData(userData))
