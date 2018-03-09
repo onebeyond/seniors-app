@@ -1,3 +1,3 @@
-import { SideMenu } from "./template";
+import { SideMenu } from './template';
 
 export default SideMenu;

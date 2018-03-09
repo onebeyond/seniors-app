@@ -1,6 +1,6 @@
-import { StackNavigator } from "react-navigation";
-import Login from "../components/Login";
-import MainScreen from "../screens/MainScreen";
+import { StackNavigator } from 'react-navigation';
+import Login from '../components/Login';
+import MainScreen from '../screens/MainScreen';
 
 const navigationOptions = (title, visible) => {
   return {
@@ -16,11 +16,11 @@ const navigator = StackNavigator(
     },
     MainScreen: {
       screen: MainScreen,
-      navigationOptions: navigationOptions("MainScreen")
+      navigationOptions: navigationOptions('MainScreen')
     }
   },
   {
-    initialRouteName: "Login"
+    initialRouteName: 'Login'
   }
 );
 

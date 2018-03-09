@@ -1,9 +1,9 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import { candidates } from "./candidates/candidates";
-import { ui } from "./ui/ui";
-import { formReducer } from "./form";
-import navigationReducer from "./nav";
+import { candidates } from './candidates/candidates';
+import { ui } from './ui/ui';
+import { formReducer } from './form';
+import navigationReducer from './nav';
 
 const AppReducer = combineReducers({
   root: combineReducers({
@@ -15,7 +15,7 @@ const AppReducer = combineReducers({
 });
 
 const RootReducer = (state = { root: {} }, action) => {
-  if (action.type === "TOTAL_LOGOUT") {
+  if (action.type === 'TOTAL_LOGOUT') {
     state = undefined;
   }
   return AppReducer(state, action);
