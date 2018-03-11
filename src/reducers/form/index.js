@@ -8,10 +8,11 @@ const initialState = {
 export function formReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         userName: action.payload.userName,
         password: action.payload.password
-      });
+      };
       break;
     default:
       return state;

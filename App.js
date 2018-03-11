@@ -1,30 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-import { AppRegistry } from 'react-native';
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Dimensions,
-  TouchableHighlight
-} from 'react-native';
 
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import AppNavigation from './src/Navigation';
+import AppNavigation from './src/navigation';
 
 import configureStore from './src/configureStore.js';
 
-const { width } = Dimensions.get('window');
-
-type Props = {};
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
@@ -39,5 +20,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
