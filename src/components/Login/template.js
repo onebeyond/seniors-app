@@ -18,12 +18,12 @@ export default class Login extends Component {
     this.initialState = this.state;
   }
 
-  navigate = () => {
+  navigate() {
     const navigateToMainScreen = NavigationActions.navigate({
-      routeName: 'MainScreen'
+      routeName: 'SideMenu'
     });
     this.props.navigation.dispatch(navigateToMainScreen);
-  };
+  }
 
   handleSubmit() {
     const { sendUserData } = this.props;
