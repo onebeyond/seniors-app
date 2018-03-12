@@ -6,20 +6,17 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
   Text,
   View,
   SafeAreaView,
   ScrollView,
   Dimensions,
-  TouchableHighlight
 } from 'react-native';
 
 import Header from '../../components/commons/header/Header';
 import Filter from '../../components/Filter';
 import CardList from '../../components/CardList/CardList';
-import * as assistantApi from '../../api/assistant.api.js';
+import * as assistantApi from '../../services/assistant.api.js';
 
 import { styles } from './styles';
 
@@ -80,7 +77,7 @@ export default class MainScreen extends Component<Props> {
   render() {
 
     const { filterOpen, loading, error, allCandidates, candidatesFilter, matchingCandidates } = this.props;
-    
+
     return (
       <SafeAreaView style={styles.safeArea}>
         {<View style={styles.container}>
@@ -89,12 +86,12 @@ export default class MainScreen extends Component<Props> {
             <Text style={{color: '#fff', fontSize: 25, fontWeight: 'bold'}}>{filterOpen ? 'Filter' : 'List'}</Text>
             {loading && <Text style={{color: '#fff'}}>Loading..</Text>}
             {error && <Text style={{color: '#fff'}}>{error}</Text>}
-            {filterOpen && 
-              <Filter data={allCandidates} 
+            {filterOpen &&
+              <Filter data={allCandidates}
                       refreshFilter={this.refreshData}
               />
             }
-            {!filterOpen && 
+            {!filterOpen &&
               <CardList data={ candidatesFilter ? matchingCandidates : allCandidates}/>
             }
           </ScrollView>

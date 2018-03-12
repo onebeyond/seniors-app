@@ -1,10 +1,10 @@
 import Login from './template';
 import { connect } from 'react-redux';
 
-import { sendUserData } from '../../actions/form';
+import { profileLogin } from '../../actions/profile';
 
 const mapDispatchToProps = dispatch => ({
-  sendUserData: userData => dispatch(sendUserData(userData))
+  profileLogin: (userName, pass) => dispatch(profileLogin(userName, pass))
 });
 
 const mapStateToProps = state => ({

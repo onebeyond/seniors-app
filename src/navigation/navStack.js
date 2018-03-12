@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation';
-import Login from '../components/Login';
+import Login from '../screens/Login';
 import MainScreen from '../screens/MainScreen';
 
 const navigationOptions = (title, visible) => {

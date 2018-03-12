@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import { candidates } from './candidates/candidates';
 import { ui } from './ui/ui';
-import { formReducer } from './form';
+import { user } from './profile';
 import navigationReducer from './nav';
 
 const AppReducer = combineReducers({
@@ -10,7 +10,9 @@ const AppReducer = combineReducers({
     navigationReducer,
     candidates,
     ui,
-    formReducer
+    profile: combineReducers({
+      user
+    })
   })
 });
 

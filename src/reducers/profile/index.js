@@ -1,13 +1,13 @@
-import { LOGIN } from '../../actions/form';
+import { SET_AUTH } from '../../actions/profile';
 
 const initialState = {
   isLoggedIn: false,
   userName: ''
 };
 
-export function formReducer(state = initialState, action) {
+export function user(state = initialState, action) {
   switch (action.type) {
-    case LOGIN:
+    case SET_AUTH:
       return {
         ...state,
         userName: action.payload.userName,
