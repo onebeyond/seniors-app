@@ -1,4 +1,4 @@
-import data from './mock-data.json';
+import { filterData } from './mock-data';
 
 const intersection = (a, b) => {
 	const toLowerCase = (str) => str.toLowerCase();
@@ -15,9 +15,9 @@ const byPostCode = ({ postCode }) => (assistant) => true;
 const byPriceRange = ({ priceRange }) => (assistant) => true;
 
 export const fetchData = async (filter) => {
-	if (!filter) return { data };
+	if (!filter) return { data: filterData };
 	return {
-		data: data
+		data: filterData
 		.filter(byDuties(filter))
 		.filter(byLanguages(filter))
 		.filter(byPostCode(filter))

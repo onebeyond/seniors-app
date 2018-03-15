@@ -6,11 +6,7 @@ import AppNavigation from './src/navigation';
 import configureStore from './src/configureStore.js';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.store = configureStore();
-  }
+  store = configureStore();
 
   render() {
     return (

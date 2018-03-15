@@ -3,11 +3,11 @@ import { combineReducers } from 'redux';
 import { candidates } from './candidates/candidates';
 import { ui } from './ui/ui';
 import { user } from './profile';
-import navigationReducer from './nav';
+import { navReducer } from './nav';
 
 const AppReducer = combineReducers({
   root: combineReducers({
-    navigationReducer,
+    nav: navReducer,
     candidates,
     ui,
     profile: combineReducers({

@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-/* import { persistStore, autoRehydrate } from 'redux-persist'; */
 
-//import createExpirationTransform from 'redux-persist-transform-expire';
+import createSagaMiddleware from 'redux-saga';
 
-// import { AsyncStorage } from 'react-native';
-//import createSagaMiddleware from 'redux-saga';
+import {
+  createReactNavigationReduxMiddleware,
+} from 'react-navigation-redux-helpers';
 
 import RootReducer from './reducers';
 import rootSagas from './sagas';
@@ -15,20 +15,18 @@ const composeEnhancers = global.__DEV__
 
 const sagaMiddleware = createSagaMiddleware();
 
+const navMiddleware = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.root.nav
+);
 
 export default function configureStore() {
 	const store = createStore(
 		RootReducer,
 		composeEnhancers(
-			applyMiddleware(sagaMiddleware),
-			//autoRehydrate()
+			applyMiddleware(navMiddleware, sagaMiddleware)
 		),
 	);
-
-/* 	persistStore(store, {
-		storage: AsyncStorage,
-		whitelist: ['root']
-	}, () => {}); */
 
 	sagaMiddleware.run(rootSagas);
 

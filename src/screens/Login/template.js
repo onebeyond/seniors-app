@@ -53,11 +53,13 @@ export default class Login extends Component {
           style={styles.inputField}
           placeholder="Name"
           onChangeText={text => this.handleName(text)}
+          autoCapitalize = 'none'
           value={this.state.userName}
         />
         <TextInput
           style={styles.inputField}
           placeholder="Password"
+          autoCapitalize = 'none'
           onChangeText={text => this.handlePassword(text)}
           secureTextEntry={true}
           value={this.state.pass}

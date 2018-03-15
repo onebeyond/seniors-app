@@ -1,14 +1,19 @@
-import { PROFILE_LOGIN } from '../actions/profile';
-
 import {
- takeLatest,
+  takeLatest, put, call
 } from 'redux-saga/effects';
 
-export function* loginProcess() {
+// Actions
+import { PROFILE_LOGIN, setAuth } from '../actions/profile';
+
+// Services
+import { checkValidUser } from '../services/loginSrv';
+
+export function* loginProcess({ payload: { userName, pass } }) {
   try {
-
+    yield call(checkValidUser, { userName, pass });
+    yield put(setAuth({ userName, pass }));
   } catch (err) {
-
+    // Filled this field
   }
 }
 

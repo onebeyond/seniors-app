@@ -1,4 +1,4 @@
-[
+export const filterData = [
     {
         "id": 0,
         "personal": {
@@ -74,4 +74,16 @@
             "currency": "€"
         }
     }
-]
+];
+
+export const loginData = [
+  { userName: 'ruben.romero@guidesmiths.com', pass: '1234567890'},
+  { userName: 'felipe.polo@guidesmiths.com', pass: '1234567890'},
+  { userName: 'javier.manzano@guidesmiths.com', pass: '1234567890'},
+  { userName: 'jm.torralvo@guidesmiths.com', pass: '1234567890'},
+  { userName: 'ramiro.blazquez@guidesmiths.com', pass: '1234567890'},
+  { userName: 'ismael.bakkali@guidesmiths.com', pass: '1234567890'},
+  { userName: 'carlos.jimenez@guidesmiths.com', pass: '1234567890'},
+  { userName: 'josep.servat@guidesmiths.com', pass: '1234567890'},
+  { userName: 'carlos.garcia@guidesmiths.com', pass: '1234567890'},
+];
