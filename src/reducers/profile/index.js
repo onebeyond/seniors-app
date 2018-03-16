@@ -11,7 +11,7 @@ export function user(state = initialState, action) {
       return {
         ...state,
         userName: action.payload.userName,
-        password: action.payload.password
+        pass: action.payload.pass
       };
       break;
     default:

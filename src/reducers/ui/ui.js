@@ -15,7 +15,7 @@ export function ui(state = initiaUi, action) {
     case SHOW_ERROR:
       nextState = {
         ...state,
-        error: action.payload.error
+        error: action.payload
       };
       break;
     case CLOSE_ERROR:

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, Image } from 'react-native';
+import { View, TextInput, Button, Image, Text } from 'react-native';
 
 import { NavigationActions } from 'react-navigation';
 
@@ -65,6 +65,9 @@ export default class Login extends Component {
           value={this.state.pass}
         />
         <Button title="Login!" color="green" onPress={this.handleSubmit} />
+        { this.props.error &&
+          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{this.props.error.message}</Text>
+        }
       </View>
     );
   }
